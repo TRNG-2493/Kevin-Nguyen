@@ -1,0 +1,78 @@
+kevin@MSI UCRT64 ~/Projects_Revature/qe-foundations (feature/data-ingestion)
+$ python check_exercise.py
+========================================================================
+Week 2 Day 2 - ingestion module self-check
+Repo: C:\Users\kevin\Projects_Revature\qe-foundations
+Python 3.15.0
+========================================================================
+
+Task 2 - exception hierarchy
+  [PASS] hierarchy: parents and siblings
+  [PASS] source errors carry path/suffix/missing + readable message
+  [PASS] record errors carry row/field/value/test_id
+  [PASS] every exception is caught by `except IngestionError`
+
+Task 3 - context managers
+  [PASS] open_source: reads UTF-8, strips BOM, closes file
+  [PASS] open_source: closes the file and re-raises when the body fails
+  [PASS] open_source: missing file -> SourceNotFoundError (from FileNotFoundError)
+  [PASS] open_source: a folder -> SourceUnreadableError (not 'not found')
+  [PASS] open_source: bad encoding -> MalformedSourceError
+  [PASS] LoadSession: outcome 'completed' + elapsed
+  [PASS] LoadSession: outcome 'failed', exception NOT swallowed
+
+Task 4 - readers (CSV / JSON / XML)
+  [PASS] CSV reader: BOM, quotes, CRLF, blank line, raw strings
+  [PASS] CSV reader: missing columns reported in required order
+  [PASS] CSV reader: empty file / header-only file
+  [PASS] CSV reader: short rows survive for validation
+  [PASS] JSON reader: returns the tests list untouched
+  [PASS] JSON reader: malformed JSON (with line number) and empty file
+  [PASS] JSON reader: wrong shapes -> MalformedSourceError
+  [PASS] XML reader: any depth, attributes + children, None when absent
+  [PASS] XML reader: malformed and empty files
+  [PASS] CSV/JSON readers: non-UTF-8 bytes -> MalformedSourceError
+  [PASS] all readers: missing file -> SourceNotFoundError
+
+Task 5 - validate_record
+  [PASS] validate_record: clean + normalised output
+  [PASS] validate_record: does not mutate its input
+  [PASS] validate_record: missing / None / blank fields
+  [PASS] validate_record: invalid status values
+  [PASS] validate_record: invalid durations (nan, inf, bool, negative, text)
+  [PASS] validate_record: a record that is not a dict
+  [PASS] validate_record: which problem is reported first
+  [PASS] validate_record: still rejects under `python -O`
+
+Task 6 - loader, assertions, batch, rejected-records CSV
+  [PASS] load_test_cases: messy CSV
+  [PASS] load_test_cases: messy JSON (same data as CSV)
+  [PASS] load_test_cases: messy XML (same data as CSV)
+  [PASS] load_test_cases: right exception class per rejected row
+  [PASS] load_test_cases: unusable files raise the right SourceError
+  [PASS] load_test_cases: accepts str and Path
+  [PASS] IngestionReport: summary() and rejected_rows()
+  [PASS] check_invariants: three assertions fire on inconsistent reports
+  [PASS] load_directory + BatchResult.totals
+  [PASS] write_rejected_csv
+  [PASS] command line: python -m qe_foundations.ingestion
+
+Task 7 - code hygiene and notes
+  [PASS] no bare / swallowing `except Exception`
+  [PASS] no `assert` in validation.py
+  [PASS] at least 3 asserts in loader.py
+  [PASS] library modules do not print()
+  [PASS] open() only inside `with` in readers/loader
+  [PASS] docs/ingestion_notes.md answered
+
+------------------------------------------------------------------------
+  Task 2 - exception hierarchy                                   4/4
+  Task 3 - context managers                                      7/7
+  Task 4 - readers (CSV / JSON / XML)                            11/11
+  Task 5 - validate_record                                       8/8
+  Task 6 - loader, assertions, batch, rejected-records CSV       11/11
+  Task 7 - code hygiene and notes                                6/6
+------------------------------------------------------------------------
+CORE CHECKS PASSED: 47/47  (100%)
+All core checks pass. Now work through the Definition of Done in README.md and commit.
+(.venv)
