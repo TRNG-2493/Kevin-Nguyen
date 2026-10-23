@@ -1,4 +1,4 @@
-**Branch: feature/data-ingestion link:** https://github.com/KevinKhangNguyen/qe-foundations/tree/feature/data-ingestion
+**Branch: feature/data-ingestion link:** https://github.com/aford277/week2-pair-programming/tree/feature/sql-validation
 
 kevin@MSI UCRT64 ~/Projects_Revature/week2-thurs/qe-foundations (feature/sql-validation)
 $ python check_exercise.py
