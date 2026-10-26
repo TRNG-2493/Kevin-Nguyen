@@ -1,0 +1,1 @@
+Branch: week2-friday link: https://github.com/KevinKhangNguyen/qe-foundations-week2-friday.git
